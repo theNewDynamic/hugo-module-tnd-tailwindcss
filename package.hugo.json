@@ -1,0 +1,14 @@
+{
+  "name": "hugo-module-tnd-tailwindcss",
+  "version": "1.0.0",
+  "description": "A Hugo Module to load TailwindCSS",
+  "repository": "https://github.com/theNewDynamic/hugo-module-tnd-tailwindcss",
+  "author": "theNewDynamic",
+  "license": "MIT",
+  "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^1.1.0",
+    "autoprefixer": "^9.4.7",
+		"postcss-cli": "^7.1.0",
+    "tailwindcss": "^2.0.1"
+  }
+}
