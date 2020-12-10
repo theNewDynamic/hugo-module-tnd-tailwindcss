@@ -4,5 +4,7 @@ module:
   mounts:
   - source: partials
     target: layouts/partials/tnd-tailwindcss
+  - source: assets
+    target: assets/tnd-tailwindcss
   - source: console
     target: layouts/partials/tnd-tailwindcss

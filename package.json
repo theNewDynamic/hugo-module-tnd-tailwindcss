@@ -6,6 +6,7 @@
    "@fullhuman/postcss-purgecss": "project",
    "autoprefixer": "project",
    "postcss-cli": "project",
+   "postcss-import": "project",
    "tailwindcss": "project"
   }
  },
@@ -15,6 +16,7 @@
   "@fullhuman/postcss-purgecss": "^1.1.0",
   "autoprefixer": "^9.4.7",
   "postcss-cli": "^7.1.0",
+  "postcss-import": "^12.0.1",
   "tailwindcss": "^2.0.1"
  },
  "license": "MIT",

@@ -1,0 +1,43 @@
+{{/*
+  GetProcessedAsset
+  wrap the asset processing logic
+
+
+  @author @regisphilibert
+
+  @context Resource (.)
+
+  @access private
+
+*/}}
+{{ $style := false }}
+{{ $config := partialCached "tnd-tailwindcss/private/GetConfig" "GetConfig" }}
+{{ $tailwind_start := `
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+` }}
+{{ $tailwind_start := $tailwind_start | resources.FromString "tailwind_start.css" }}
+
+{{ $stylesheet_path := "/style.css" }}
+{{ with $config.stylesheet_path }}
+  {{ $stylesheet_path = . }}
+{{ end }}
+
+  {{ with resources.GetMatch "tnd-tailwindcss/style.css" }}
+    {{ $style = resources.Concat "/tnd-tailwindcss/style.css" (slice $tailwind_start .) | resources.PostCSS (dict "inlineImports" true) }}
+    {{/* Because we're using Hugo's inlineImports rather than postcss-imports, we need to place the style under the same dir in assets before PostCSS
+    But we don't want it to be served from `/tnd-tailwindcss/ dir. 
+    There is no way to simply rename a resource so we use .Concat on itself.
+    */}}
+    {{ $style = resources.Concat $stylesheet_path (slice $style) }}
+    {{ with $config.purge }}
+      {{ if not site.IsServer }}
+        {{ $style = $style | resources.PostProcess }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+
+
+
+{{ return $style }}
